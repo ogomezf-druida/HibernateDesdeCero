@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 @Table(name="foo")
 public class Foo {
     @Id
-    public UUID id;
+    public Integer id;
     public String name;
     public String dni;
 

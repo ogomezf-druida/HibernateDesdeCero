@@ -17,7 +17,8 @@ import com.example.entity.Foo;
 public class App {
     public static void main(String[] args) {
 
-        setupHibernate();
+        //setupHibernate();
+        modifHibernate();
         System.out.println("Hello World!");
     }
 
@@ -36,7 +37,7 @@ public class App {
 
         Foo foo = new Foo();
 
-        foo.id = UUID.randomUUID();
+        foo.id = 2;
         foo.name = "Oscar GF";
         foo.dni = "07502882Y";
 
@@ -46,6 +47,34 @@ public class App {
 
         //  Si no se hace el sesion close, los objetos siguen en memoria
         session.close();    
+
+        //172,174,179,91,230,160,76,160,188,49,145,255,50,230,157,178
+    }
+
+    public static void modifHibernate() {
+
+        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().build();
+
+        SessionFactory sessionFactory = new MetadataSources(registry)
+                .addAnnotatedClass(Foo.class)
+                .buildMetadata()
+                .buildSessionFactory();
+
+        Session session = sessionFactory.openSession();
+
+        var tr = session.beginTransaction();
+       
+        Foo foo = session.get(Foo.class,1);
+        
+        foo.dni = "07502883P";
+        session.persist(foo);
+
+
+        tr.commit();
+
+        //  Si no se hace el sesion close, los objetos siguen en memoria
+        session.close();    
+
 
 
     }

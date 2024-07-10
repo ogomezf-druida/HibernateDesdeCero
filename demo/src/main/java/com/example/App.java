@@ -17,6 +17,7 @@ import com.example.entity.Foo;
 public class App {
     public static void main(String[] args) {
 
+        setupHibernate();
         System.out.println("Hello World!");
     }
 

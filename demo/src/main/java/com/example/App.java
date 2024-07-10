@@ -16,7 +16,8 @@ public class App {
     public static void main(String[] args) {
 
         //setupHibernate();
-        modifHibernate();
+        //modifHibernate();
+        borraHibernate();
         System.out.println("Hello World!");
     }
 
@@ -64,8 +65,8 @@ public class App {
        
         Foo foo = session.get(Foo.class,1);
         
-        foo.dni = "07502883P";
-        session.persist(foo);
+        foo.dni = "57502883P";
+        //session.persist(foo);
 
 
         tr.commit();
@@ -76,4 +77,31 @@ public class App {
 
 
     }
+
+    public static void borraHibernate() {
+
+        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().build();
+
+        SessionFactory sessionFactory = new MetadataSources(registry)
+                .addAnnotatedClass(Foo.class)
+                .buildMetadata()
+                .buildSessionFactory();
+
+        Session session = sessionFactory.openSession();
+
+        var tr = session.beginTransaction();
+       
+        Foo foo = session.get(Foo.class,1);
+        
+        session.remove(foo);
+
+        tr.commit();
+
+        //  Si no se hace el sesion close, los objetos siguen en memoria
+        session.close();    
+
+
+
+    }
+
 }

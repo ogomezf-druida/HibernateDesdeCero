@@ -1,7 +1,5 @@
 package com.example;
 
-import java.util.UUID;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

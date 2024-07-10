@@ -12,6 +12,7 @@ public class Foo {
     @Id
     public UUID id;
     public String name;
+    public String dni;
 
 }
 

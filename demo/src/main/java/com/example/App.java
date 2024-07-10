@@ -38,6 +38,7 @@ public class App {
 
         foo.id = UUID.randomUUID();
         foo.name = "Oscar GF";
+        foo.dni = "07502882Y";
 
         session.persist(foo);
 
